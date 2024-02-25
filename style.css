@@ -2,17 +2,19 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 h1 {
   text-align: center;
   margin-top: 20px;
   margin-bottom: 20px;
+  font-family: "Tangerine", cursive;
+  font-size: 100px;
 }
 
 p {
   padding: 5px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #wrapDiv1 {
@@ -39,4 +41,14 @@ p {
   margin-top: 20px;
   width: 580px;
   height: 904px;
+}
+
+#fetchPrayer {
+  height: 30px;
+  width: 200px;
+}
+
+#apiEndpointSelector {
+  padding-left: 10px;
+  padding-right: 10px;
 }
