@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-family: "Tangerine", cursive;
+  font-size: 100px;
+}
+
+p {
+  padding: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#wrapDiv1 {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+#wrapDiv2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
+
+#prayerDisplay {
+  margin-top: 20px;
+  width: 30%;
+  margin-left: 20px;
+  text-align: center;
+}
+
+#blessedDiv {
+  margin-top: 20px;
+  /* width: 580px;
+  height: 904px; */
+  border-radius: 8px;
+}
+
+#fetchPrayer {
+  height: 30px;
+  width: 200px;
+  border-radius: 8px;
+}
+
+#apiEndpointSelector {
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 8px;
+}
