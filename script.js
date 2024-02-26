@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   // Image array
-  
+
   const endpointImages = {
     "v1/joyful": "HolyMary.jpg",
     "v1/glorious": "HolyJesus.jpg",
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     endpointSelector.add(option);
   });
 
-  // Fetch prayer / get data
+  // Fetch data / Set picture
 
   fetchPrayerButton.addEventListener("click", function () {
     const selectedEndpoint = endpointSelector.value;
