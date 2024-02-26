@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
+  
+  // API endpoints array
+
   const endpoints = [
     { name: "Joyful prayers", endpoint: "v1/joyful" },
     { name: "Glorious prayers", endpoint: "v1/glorious" },
@@ -6,6 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
     { name: "Luminous prayers", endpoint: "v1/luminous" },
   ];
 
+  // Image array
+  
   const endpointImages = {
     "v1/joyful": "HolyMary.jpg",
     "v1/glorious": "HolyJesus.jpg",
@@ -18,12 +23,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const prayerDisplay = document.getElementById("prayerDisplay");
 
   // Populate dropdown
+
   endpoints.forEach(function (endpoint) {
     let option = new Option(endpoint.name, endpoint.endpoint);
     endpointSelector.add(option);
   });
 
-  // Fetch prayer
+  // Fetch prayer / get data
+
   fetchPrayerButton.addEventListener("click", function () {
     const selectedEndpoint = endpointSelector.value;
     const apiUrl = `https://the-rosary-api.vercel.app/${selectedEndpoint}`;
@@ -46,6 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
     getPrayerData();
   });
 
+  // Image function
+
   function setBackgroundImage(selectedEndpoint) {
     const blessedDiv = document.getElementById("blessedDiv");
     const imageUrl = endpointImages[selectedEndpoint];
@@ -53,33 +62,31 @@ document.addEventListener("DOMContentLoaded", function () {
     img.src = imageUrl;
     img.onload = function () {
       blessedDiv.style.backgroundImage = `url('${imageUrl}')`;
-      // blessedDiv.style.backgroundSize = "cover";
       blessedDiv.style.backgroundPosition = "center";
       blessedDiv.style.height = `${img.height}px`;
       blessedDiv.style.width = `${img.width}px`;
     };
   }
 
+  // Title, Verse, Fruit, Prayer text creation & appending
+
   function generatePrayer(data) {
     // Clear previous content
     while (prayerDisplay.firstChild) prayerDisplay.firstChild.remove();
-
+    
+    // Element creation
     data.forEach((prayer) => {
       const prayerSection = document.createElement("section");
-      prayerSection.style.marginBottom = "20px";
-
-      // Title, Verse, Fruit, Prayer text creation & appending
       const title = document.createElement("h2");
+      const verse = document.createElement("p");
+      const fruit = document.createElement("p");
+      const text = document.createElement("p");
+      // Styling of elements
+      prayerSection.style.marginBottom = "20px";
       title.style.marginBottom = "10px";
       title.textContent = prayer.title;
-
-      const verse = document.createElement("p");
       verse.textContent = `Verse: ${prayer.verse}`;
-
-      const fruit = document.createElement("p");
       fruit.textContent = `${prayer.fruit}`;
-
-      const text = document.createElement("p");
       text.textContent = prayer.text;
 
       prayerSection.append(title, verse, fruit, text);
