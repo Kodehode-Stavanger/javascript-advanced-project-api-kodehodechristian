@@ -6,6 +6,13 @@ document.addEventListener("DOMContentLoaded", function () {
     { name: "Luminous prayers", endpoint: "v1/luminous" },
   ];
 
+  const endpointImages = {
+    "v1/joyful": "HolyMary.jpg",
+    "v1/glorious": "HolyJesus.jpg",
+    "v1/sorrowful": "HolyMary.jpg",
+    "v1/luminous": "HolyJesus.jpg",
+  };
+
   const endpointSelector = document.getElementById("apiEndpointSelector");
   const fetchPrayerButton = document.getElementById("fetchPrayer");
   const prayerDisplay = document.getElementById("prayerDisplay");
@@ -26,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const result = await fetch(apiUrl);
         const data = await result.json();
         generatePrayer(data);
-        setBackgroundImage();
+        setBackgroundImage(selectedEndpoint);
       } catch (error) {
         console.log(error);
         const errorMsg = document.createElement("p");
@@ -39,17 +46,23 @@ document.addEventListener("DOMContentLoaded", function () {
     getPrayerData();
   });
 
-  function setBackgroundImage() {
+  function setBackgroundImage(selectedEndpoint) {
     const blessedDiv = document.getElementById("blessedDiv");
-    const imageUrl = "HolyMary.jpg";
-    blessedDiv.style.backgroundImage = `url('${imageUrl}')`;
-    // blessedDiv.style.backgroundSize = "center";
-    blessedDiv.style.backgroundPosition = "center";
+    const imageUrl = endpointImages[selectedEndpoint];
+    const img = new Image();
+    img.src = imageUrl;
+    img.onload = function () {
+      blessedDiv.style.backgroundImage = `url('${imageUrl}')`;
+      // blessedDiv.style.backgroundSize = "cover";
+      blessedDiv.style.backgroundPosition = "center";
+      blessedDiv.style.height = `${img.height}px`;
+      blessedDiv.style.width = `${img.width}px`;
+    };
   }
 
   function generatePrayer(data) {
     // Clear previous content
-    prayerDisplay.innerHTML = "";
+    while (prayerDisplay.firstChild) prayerDisplay.firstChild.remove();
 
     data.forEach((prayer) => {
       const prayerSection = document.createElement("section");
